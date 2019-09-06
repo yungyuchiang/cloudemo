@@ -29,6 +29,11 @@ spring:
     maxOpenPreparedStatements: 20
   main:
     allow-bean-definition-overriding: true # 但遇到相同名字的时候，是否允许覆盖注册
+  redis:
+    host: 45.77.31.222
+    port: 6379
+    password: redis2019
+
 
 server:
   port: 8081
