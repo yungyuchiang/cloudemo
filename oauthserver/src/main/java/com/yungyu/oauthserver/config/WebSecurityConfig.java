@@ -32,6 +32,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenctiationFailureHandler authenctiationFailureHandler;
 
+    private MySessionExpiredStrategy sessionExpiredStrategy;
+
     @Autowired
     private ValidateCodeFilter validateCodeFilter;
 
@@ -58,7 +60,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests()                  // 定义哪些URL需要被保护、哪些不需要被保护
                 .antMatchers("/authentication/require", "/login.html", "/code/image").permitAll()       // 设置所有人都可以访问登录页面
                 .anyRequest().authenticated()               // 任何请求,登录后可以访问
-                .and().csrf().disable();
+                .and()
+                .sessionManagement() // Session 管理
+                .invalidSessionUrl("/session/invalid")
+                .maximumSessions(2)
+                .maxSessionsPreventsLogin(true) // 除了后者将前者踢出的策略，我们也可以控制当Session达到最大有效数的时候，不再允许相同的账户登录。
+                .expiredSessionStrategy(sessionExpiredStrategy)
+                .and().and().csrf().disable();
     }
 
 
