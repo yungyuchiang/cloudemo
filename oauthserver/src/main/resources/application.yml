@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: oauth-server
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_demo?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    username: root
+    password: 123456
+    # 使用druid数据源
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  main:
+    allow-bean-definition-overriding: true # 但遇到相同名字的时候，是否允许覆盖注册
+
+server:
+  port: 8081
+
+#mybatis:
+#  mapper-locations: classpath*:mybatis/xml/*.xml
+#  type-aliases-package: com.yungyu.oauthserver.entity
+
+mybatis-plus:
+    mapper-locations: classpath*:mybatis/xml/*.xml
+    type-aliases-package: com.yungyu.oauthserver.entity

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yungyu.mybatisdemo.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="userMap" type="com.yungyu.mybatisdemo.entity.User">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="age" property="age" />
+        <result column="sex" property="sex" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="descript" property="descript" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, age, sex, phone, email, descript
+    </sql>
+    
+    <select id="findUserInfoById" resultMap="userMap">
+        SELECT
+            id, name, age, sex, phone, email, descript
+        FROM springcoulddemo.tb_user
+        WHERE
+            id = #{id }
+    </select>
+    
+</mapper>

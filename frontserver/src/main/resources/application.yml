@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: front-server
+
+server:
+  port: 8092

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: G:/IDEAProjects/cloudemo/configserver/src/main/resources/config/
+      fail-fast: true
+  profiles:
+    active: native
+
+server:
+  port: 8082
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8081}/eureka/
