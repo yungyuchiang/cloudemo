@@ -37,7 +37,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("用户不存在");
         }
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ADMIN"));
+        if ("root".equals(username)) {
+            authorities.add(new SimpleGrantedAuthority("admin"));
+        } else {
+            authorities.add(new SimpleGrantedAuthority("test"));
+        }
         return new User(
                 username,
                 this.passwordEncoder.encode(user.getPassword()),

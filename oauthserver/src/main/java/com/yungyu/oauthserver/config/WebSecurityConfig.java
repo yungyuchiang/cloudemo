@@ -3,6 +3,7 @@ package com.yungyu.oauthserver.config;
 import com.yungyu.oauthserver.filter.ValidateCodeFilter;
 import com.yungyu.oauthserver.handler.AuthenctiationFailureHandler;
 import com.yungyu.oauthserver.handler.AuthenctiationSuccessHandler;
+import com.yungyu.oauthserver.handler.MyAuthenticationAccessDeniedHandler;
 import com.yungyu.oauthserver.handler.MyLogOutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -36,6 +37,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyLogOutSuccessHandler myLogOutSuccessHandler;
 
+    @Autowired
+    private MyAuthenticationAccessDeniedHandler myAuthenticationAccessDeniedHandler;
+
     private MySessionExpiredStrategy sessionExpiredStrategy;
 
     @Autowired
@@ -46,7 +50,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+        http.exceptionHandling()
+                .accessDeniedHandler(myAuthenticationAccessDeniedHandler)
+                .and()
+                .addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin()                                // 定义当需要用户登录时候，转到的登录页面。
                 .loginPage("/authentication/require")                        // 设置登录页面
                 .loginProcessingUrl("/login")          // 自定义的登录接口
