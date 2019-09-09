@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: oauth2server
+
+server:
+  port: 8082
+
+security:
+  oauth2:
+    client:
+      client-id: test
+      client-secret: test1234
+      registered-redirect-uri: http://www.baidu.com
