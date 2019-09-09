@@ -23,7 +23,7 @@ spring:
     maxOpenPreparedStatements: 20
 
 server:
-  port: 8082
+  port: 8092
 
 security:
   oauth2:
