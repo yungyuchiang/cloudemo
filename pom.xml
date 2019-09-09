@@ -20,7 +20,7 @@
         <module>eurakaserver</module>
         <module>configserver</module>
         <module>mybatisdemo</module>
-        <module>oauthserver</module>
+        <module>basesecurityserver</module>
         <module>bpmserver</module>
         <module>frontserver</module>
         <module>shiroserver</module>
