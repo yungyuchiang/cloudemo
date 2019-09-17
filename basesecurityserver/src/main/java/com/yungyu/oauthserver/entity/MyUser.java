@@ -1,5 +1,6 @@
 package com.yungyu.oauthserver.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -19,12 +20,16 @@ public class MyUser {
 
     private Date birthday;
 
+    @TableField(exist = false)
     private boolean accountNonExpired = true;
 
+    @TableField(exist = false)
     private boolean accountNonLocked= true;
 
+    @TableField(exist = false)
     private boolean credentialsNonExpired= true;
 
+    @TableField(exist = false)
     private boolean enabled= true;
 
     @Override
